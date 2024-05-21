@@ -1,0 +1,27 @@
+POST /api/v5/temporary_reservations?client_type=web&locale=en&minor_version=3 HTTP/1.1
+Host: hh-venus.my.id
+accept: application/json, text/plain, */*
+accept-language: en-US,en;q=0.9
+content-type: application/json
+origin: https://hungryhub-build-staging.netlify.app
+priority: u=1, i
+sec-ch-ua: "Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+sec-fetch-dest: empty
+sec-fetch-mode: cors
+sec-fetch-site: cross-site
+user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
+x-hh-language: en
+Content-Length: 127
+
+{
+  "reservation": {
+    "date": "2024-05-31",
+    "adult": 2,
+    "start_time": "09:00",
+    "kids": 0,
+    "restaurant_id": "34"
+  },
+  "packages": []
+}

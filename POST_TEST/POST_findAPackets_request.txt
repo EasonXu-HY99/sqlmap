@@ -1,0 +1,15 @@
+POST /api/v5/restaurants/287/find_available_packages.json HTTP/1.1
+Content-Type: application/json
+X-Hh-Language: en-En
+Host: hh-venus.my.id
+Content-Length: 143
+
+{
+	"minor_version": "3",
+	"date": "2020-06-29",
+	"start_time": "12:15",
+	"adult": 3,
+	"kids": 0,
+	"for_dine_in": true,
+	"for_delivery": true
+}

@@ -1,0 +1,16 @@
+GET /api/v5/restaurants/34/around_restaurants.json?client_type=web&locale=en HTTP/1.1
+Host: hh-venus.my.id
+Accept: */*
+Accept-Language: en-US,en;q=0.9
+Content-Type: application/json
+Origin: https://hh-pegasus-venus.pages.dev
+Priority: u=1, i
+Referer: https://hh-pegasus-venus.pages.dev/
+sec-ch-ua: "Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+sec-fetch-dest: empty
+sec-fetch-mode: cors
+sec-fetch-site: cross-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
+x-hh-language: en

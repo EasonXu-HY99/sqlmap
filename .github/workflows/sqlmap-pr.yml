@@ -1,0 +1,27 @@
+name: SQLMap SQL Injection Test
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  sqlmap-check:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.12'
+
+    - name: Run POST API Tests
+      run: |
+        # python sqlmap.py -r \POST_TEST\POST_web_reservation.txt --batch --random-agent
+
+    - name: Run GET API Tests
+      run: |
+        # python sqlmap.py -r \GET_TEST\GET_web_search.txt --batch --random-agent

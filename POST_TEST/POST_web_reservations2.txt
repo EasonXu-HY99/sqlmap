@@ -1,0 +1,46 @@
+POST /api/v5/reservations.json?client_type=web&locale=en HTTP/1.1
+Host: hh-venus.my.id
+accept: application/json
+accept-language: en-US,en;q=0.9
+content-type: application/json
+origin: https://hh-pegasus-venus-v1.pages.dev
+priority: u=1, i
+referer: https://hh-pegasus-venus-v1.pages.dev/
+sec-ch-ua: "Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+sec-fetch-dest: empty
+sec-fetch-mode: cors
+sec-fetch-site: cross-site
+user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
+x-hh-language: en
+Content-Length: 544
+
+{
+  "big_group": false,
+  "channel": "web",
+  "minor_version": 3,
+  "provider": "hungryhub",
+  "source": "website",
+  "with_phone_verification": false,
+  "tmp_reservation_id": "3445206",
+  "use_3d_secure": false,
+  "access_token": "Yj4cVAKwnVbv4GbSCV2d4ABVZ2_yy4GtXMqXHFwSCSI",
+  "omise_payment_type": "",
+  "packages": [
+    {
+      "id": "3788",
+      "quantity": 1,
+      "menu_sections": []
+    }
+  ],
+  "reservation": {
+    "adult": 3,
+    "restaurant_id": "997",
+    "start_time": "11:30",
+    "date": "2024-05-31",
+    "kids": 0
+  },
+  "selected_special_menus": [],
+  "web_v2_host": "https://hungryhub-build-staging.netlify.app"
+}

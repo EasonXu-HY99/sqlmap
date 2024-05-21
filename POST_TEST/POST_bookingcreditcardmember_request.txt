@@ -1,0 +1,51 @@
+POST /api/v5/reservations.json HTTP/1.1
+Content-Type: application/json
+X-Hh-Language: en-US
+Host: hh-venus.my.id
+Content-Length: 872
+
+{
+	"minor_version": "3",
+	"guest_user": {
+		"name": "Sukshan",
+		"email": "sukhhan5s@gmail.com",
+		"phone": "0869770065"
+	},
+	"provider": "hungryhub",
+	"source": "hh_ios",
+	"channel": "appsflyer",
+	"reservation": {
+		"restaurant_id": 837,
+		"date": "2024-10-13",
+		"start_time": "18:30",
+		"adult": 2,
+		"kids": 0,
+		"special_request": "",
+		"promo_code": "",
+		"voucher_code": "",
+		"service_type": "delivery",
+		"distance_to_restaurant": 13.4
+	},
+	"address": {
+		"detail": "Abc Street Bangkok 12345",
+		"lat": 20.123,
+		"lon": 100.123,
+		"name": "home",
+		"note_for_driver": "floor 2"
+	},
+	"packages": [
+		{
+			"id": 509,
+			"quantity": 1
+		}
+	],
+	"big_group": false,
+	"omise_payment_type": "cc",
+	"gb_primepay_card": {
+		"name": "My Card",
+		"number": "1111",
+		"expiration_month": "08",
+		"expiration_year": "21",
+		"token": "654d17f1-ef06-460d-a51b-7d09797fe84d"
+	}
+}
