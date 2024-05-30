@@ -21,11 +21,19 @@ jobs:
         with:
           python-version: '3.x'
       
+      - name: Extract added files
+        id: files
+        run: |
+          echo "::set-output name=files::$(jq -r '.commits[0].added | .[]' $GITHUB_EVENT_PATH)"
+        env:
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+      
       - name: Run sqlmap on each file
         run: |
-          echo "Files added in this commit:"
-          echo "${{ toJson(github.event.head_commit.added) }}"
-          for file in ${{ toJson(github.event.head_commit.added) }}; do
+          added_files="${{ steps.files.outputs.files }}"
+          IFS=$'\n' read -rd '' -a file_array <<< "$added_files"
+          for file in "${file_array[@]}"; do
+            echo "Testing file: $file"
             if [[ "$file" =~ ^(POST_TEST|GET_TEST|PUT_TEST|PATCH_TEST|DELETE_TEST)/.*\.txt$ ]]; then
               echo "Running sqlmap on $file"
               python sqlmap.py -r ${{ github.workspace }}/$file --batch --random-agent
