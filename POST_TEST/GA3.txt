@@ -1,0 +1,48 @@
+POST /api/v5/voucher_transactions?client_type=web&locale=en&minor_version=3 HTTP/1.1
+Host: hh-venus.my.id
+accept: application/json, text/plain, */*
+accept-language: en-US,en;q=0.9
+content-type: application/json
+origin: https://hungryhub-build-staging.netlify.app
+priority: u=1, i
+sec-ch-ua: "Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+sec-fetch-dest: empty
+sec-fetch-mode: cors
+sec-fetch-site: cross-site
+user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
+x-hh-language: en
+Content-Length: 433
+
+{
+  "guest_user": {
+    "name": "hihi",
+    "email": "hihi@hihi.com",
+    "phone": "+66123456789"
+  },
+  "provider": "hungryhub",
+  "source": "web",
+  "vouchers": {
+    "custom_amount": [
+      {
+        "amount": "500",
+        "quantity": 1
+      }
+    ],
+    "packages": []
+  },
+  "payment_type": "credit_card",
+  "gb_primepay_card": {
+    "name": "hihi",
+    "number": "525886XXXXXX5862",
+    "last_digits": "5862",
+    "card_type": "MAS",
+    "card_location": "D",
+    "expiration_month": "02",
+    "expiration_year": "25",
+    "is_primary": false,
+    "token": "049c2416-922b-439a-b495-21e38c4e7915"
+  },
+  "use_3d_secure": true
+}
