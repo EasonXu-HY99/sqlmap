@@ -20,21 +20,18 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-      
-      - name: Print Event JSON
-        run: cat $GITHUB_EVENT_PATH
 
-      - name: Extract added files
-        id: files
+      - name: List all files in commit
+        id: file_list
         run: |
-          files=$(jq -r '.commits[0].added | join("\n")' $GITHUB_EVENT_PATH)
-          echo "Added files: $files"
-          echo "::set-output name=files::$files"
+          echo "Files changed in this commit:"
+          git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep '\.txt$'
+          files_changed=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep '\.txt$')
+          echo "::set-output name=all_files::$(echo $files_changed)"
       
       - name: Run sqlmap on each file
         run: |
-          added_files="${{ steps.files.outputs.files }}"
-          IFS=$'\n' read -rd '' -a file_array <<< "$added_files"
+          IFS=$'\n' read -rd '' -a file_array <<< "${{ steps.file_list.outputs.all_files }}"
           for file in "${file_array[@]}"; do
             echo "Testing file: $file"
             if [[ "$file" =~ ^(POST_TEST|GET_TEST|PUT_TEST|PATCH_TEST|DELETE_TEST)/.*\.txt$ ]]; then
