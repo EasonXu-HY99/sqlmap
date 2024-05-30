@@ -1,27 +1,32 @@
-name: SQLMap SQL Injection Test
+name: SQLMap Penetration Testing
 
 on:
-  pull_request:
-    branches:
-      - main
+  push:
+    paths:
+      - 'POST_TEST/*.txt'
+      - 'GET_TEST/*.txt'
+      - 'PUT_TEST/*.txt'
+      - 'PATCH_TEST/*.txt'
+    paths-ignore:
+      - '**/*.txt'  
 
 jobs:
-  sqlmap-check:
-    runs-on: windows-latest
-
+  sqlmap-test:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.head_commit.added }}  # Checks if files were added
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.12'
-
-    - name: Run POST API Tests
-      run: |
-        # python sqlmap.py -r \POST_TEST\POST_web_reservation.txt --batch --random-agent
-
-    - name: Run GET API Tests
-      run: |
-        # python sqlmap.py -r \GET_TEST\GET_web_search.txt --batch --random-agent
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      
+      - name: Run sqlmap
+        run: |
+          for file in ${{ toJson(github.event.head_commit.added) }}; do
+            if [[ $file == POST_TEST/*.txt || $file == GET_TEST/*.txt || $file == PUT_TEST/*.txt || $file == PATCH_TEST/*.txt ]]; then
+              python sqlmap.py -r ${{ github.workspace }}/$file --batch --random-agent
+            fi
+          done
