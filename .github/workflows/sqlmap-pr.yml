@@ -21,12 +21,15 @@ jobs:
         with:
           python-version: '3.x'
       
+      - name: Print Event JSON
+        run: cat $GITHUB_EVENT_PATH
+
       - name: Extract added files
         id: files
         run: |
-          echo "::set-output name=files::$(jq -r '.commits[0].added | .[]' $GITHUB_EVENT_PATH)"
-        env:
-          GITHUB_EVENT_PATH: ${{ github.event_path }}
+          files=$(jq -r '.commits[0].added | join("\n")' $GITHUB_EVENT_PATH)
+          echo "Added files: $files"
+          echo "::set-output name=files::$files"
       
       - name: Run sqlmap on each file
         run: |
