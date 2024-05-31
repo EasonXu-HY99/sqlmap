@@ -19,24 +19,39 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: '3.12'
 
-      - name: List .txt files in the current commit
-        id: files_list
+      - name: List changed files
+        id: list_files
         run: |
-          files_changed=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep '\.txt$')
-          echo "TXT files affected: $files_changed"
-          echo "::set-output name=changed_files::$files_changed"
-
-      - name: Run sqlmap on each file
+          echo "Commit SHA: ${{ github.sha }}"
+          file_list=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
+          echo "All changed files:"
+          echo "$file_list"
+          if [ -z "$file_list" ]; then
+            echo "No files were changed in this commit."
+          else
+            txt_files=$(echo "$file_list" | grep '\.txt$')
+            echo "Filtered TXT files:"
+            echo "$txt_files"
+            if [ -z "$txt_files" ]; then
+              echo "No .txt files were changed."
+              echo "::set-output name=changed_files::"
+            else
+              echo "::set-output name=changed_files::$txt_files"
+            fi
+          fi
+  
+      - name: Run sqlmap on each .txt file
+        if: steps.list_files.outputs.changed_files != ''
         run: |
-          IFS=$'\n' read -d '' -a file_array <<< "${{ steps.files_list.outputs.changed_files }}"
+          IFS=$'\n' read -d '' -a file_array <<< "${{ steps.list_files.outputs.changed_files }}"
           for file in "${file_array[@]}"; do
             echo "Testing file: $file"
             if [[ "$file" =~ ^(POST_TEST|GET_TEST|PUT_TEST|PATCH_TEST|DELETE_TEST)/.*\.txt$ ]]; then
               echo "Running sqlmap on $file"
               python sqlmap.py -r ${{ github.workspace }}/$file --batch --random-agent
             else
-              echo "Skipped: $file (does not match required paths)"
+             echo "Skipped: $file (does not match required paths)"
             fi
           done
