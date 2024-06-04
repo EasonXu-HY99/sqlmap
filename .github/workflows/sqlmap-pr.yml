@@ -50,7 +50,9 @@ jobs:
           IFS=$'\n' read -a file_array <<< "${{ steps.list_files.outputs.changed_files }}"
           for file in "${file_array[@]}"; do
             echo "Testing file: $file"
-            # Check if the file exists before running
+            if [[ "$file" =~ ^(POST_TEST|GET_TEST|PUT_TEST|PATCH_TEST|DELETE_TEST)/.*\.txt$ ]]; then
+              echo "Running sqlmap on $file"
+              # Check if the file exists before running
               if [ -f "/home/runner/work/sqlmap/sqlmap/$file" ]; then
                 python sqlmap.py -r "/home/runner/work/sqlmap/sqlmap/$file" --batch --random-agent
               else
