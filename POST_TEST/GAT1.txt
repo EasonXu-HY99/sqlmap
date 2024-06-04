@@ -1,4 +1,4 @@
-POST /api/v5/reservations.json?client_type=web&locale=en HTTP/1.1
+POST /api/v5/restaurants/34/calculate_package_price.json?client_type=web&locale=en HTTP/1.1
 Host: hh-venus.my.id
 accept: application/json
 accept-language: en-US,en;q=0.9
@@ -14,37 +14,17 @@ sec-fetch-mode: cors
 sec-fetch-site: cross-site
 user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 x-hh-language: en
-Content-Length: 571
+Content-Length: 163
 
 {
-  "big_group": false,
-  "channel": "web",
-  "minor_version": 3,
-  "provider": "hungryhub",
-  "source": "website",
-  "with_phone_verification": false,
-  "tmp_reservation_id": "3445204",
-  "use_3d_secure": false,
-  "guest_user": {
-    "email": "haiyangXX@XXhaiyang.com",
-    "name": "haiyangXX",
-    "phone": "+66999999999"
-  },
-  "omise_payment_type": "",
-  "packages": [
+  "adult": 2,
+  "kids": 0,
+  "package_bought": [
     {
-      "id": "3788",
+      "id": "12724",
       "quantity": 1,
       "menu_sections": []
     }
   ],
-  "reservation": {
-    "adult": 4,
-    "restaurant_id": "997",
-    "start_time": "12:00",
-    "date": "2024-05-29",
-    "kids": 0
-  },
-  "selected_special_menus": [],
-  "web_v2_host": "https://hungryhub-build-staging.netlify.app"
+  "reservation_date": "2024-05-31"
 }
