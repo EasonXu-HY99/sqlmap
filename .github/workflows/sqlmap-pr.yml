@@ -40,7 +40,7 @@ jobs:
   
       - name: Run sqlmap on each .txt file
         run: |
-          IFS=$'\n' read -d '' -a file_array <<< "${{ env.TXTFILES }}"
+          IFS=$'\n' read -a file_array <<< "${{ env.TXTFILES }}"
           for file in "${file_array[@]}"; do
             echo "Testing file: $file"
             if [[ "$file" =~ ^(POST_TEST|GET_TEST|PUT_TEST|PATCH_TEST|DELETE_TEST)/.*\.txt$ ]]; then
